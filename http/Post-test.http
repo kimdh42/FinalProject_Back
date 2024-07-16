@@ -1,0 +1,26 @@
+### 로그인 테스트
+POST http://localhost:8080/emp/auth/login
+Content-Type: application/json
+
+{
+  "emp_code" : "2024052",
+  "emp_pass" : "2024052"
+}
+
+
+### 댓글 테스트
+POST http://localhost:8080/post/commentAdd
+Content-Type: application/json; charset=utf-8
+Authorization: Bearer eyJkYXRlIjoxNzE5Mzg1MzAxMDk5LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDUyLCJleHAiOjE3MTkzODg5MDF9.Hkn1bAb3X2NuF2Hk_3D1Ya480PHZxkaul-osUbM5aLf09E4f6oF2MmmdxfKvsvqgQYpxp671QXjMb54C0UVqzQ
+
+{
+  "commCon": "테스트 댓글.",
+  "commDate": "2024-06-26T00:58:08.605Z",
+  "commStatus": "N",
+  "postCode": "PO01"
+}
+### 댓글 수정 테스트
+#PUT http://localhost:8080/post/updateComment/18
+#Content-Type: application/json; charset=utf-8
+
+

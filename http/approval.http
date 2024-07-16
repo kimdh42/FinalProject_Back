@@ -1,0 +1,187 @@
+### 결재양식리스트 조회
+GET http://localhost:8080/approval/formList
+
+### 결재양식기본내용 조회
+GET http://localhost:8080/approval/formContent?afCode=13
+
+### 결재라인 특정 조회
+GET http://localhost:8080/approval/formLine?lsCode=4
+
+### 결재라인 회원 조회(본인 기준)
+GET http://localhost:8080/approval/formLineEmp?deptCode=D15&titleCode=T6&lsCode=3
+
+### 결재서명 이미지 조회(본인 기준)
+GET http://localhost:8080/approval/sign?empCode=2021048
+
+### 결재 등록
+POST http://localhost:8080/approval/regist?temporary=true
+Content-Type: application/json
+
+{
+  "document": {
+    "adTitle": "2024 인사발령",
+    "employee": {
+      "emp_code": 2021048
+    },
+    "adReportDate": "2023-04-15",
+    "adStatus": "대기",
+    "form": {
+      "afCode": 1
+    },
+    "approvalAppoint": {
+      "aappCode": "AAPP1",
+      "aappNo" : "app-2024-05-0001",
+      "aappDate" : "2024-06-28",
+      "aappTitle" : "테스트"
+    },
+    "appointDetailList": [
+      {
+        "adetBefore": "T5",
+        "adetAfter": "T4",
+        "adetType": "진급",
+        "employee": {
+          "emp_code": 2021032
+        }
+      },
+      {
+        "adetBefore": "D15",
+        "adetAfter": "D14",
+        "adetType": "부서이동",
+        "employee": {
+          "emp_code": 2023062
+        }
+      }
+    ],
+    "trueLineList": [
+      {
+        "talOrder": 1,
+        "talRole": "결재",
+        "employee": {
+          "emp_code": 2024051
+        }
+      },
+      {
+        "talOrder": 2,
+        "talRole": "결재",
+        "employee": {
+          "emp_code": 2021068
+        }
+      },
+      {
+        "talOrder": 3,
+        "talRole": "결재",
+        "employee": {
+          "emp_code": 2020021
+        }
+      },
+      {
+        "talOrder": 4,
+        "talRole": "결재",
+        "employee": {
+          "emp_code": 2020011
+        }
+      }
+    ]
+  }
+}
+
+### 임시저장 조회
+GET http://localhost:8080/approval/send/document?empCode=2024062&status=temporary
+
+### 보낸결재함[대기] 조회
+GET http://localhost:8080/approval/send/document?empCode=2024062&status=return
+
+### 보낸결재함[대기] 조회 + 페이지
+GET http://localhost:8080/approval/send/document?page=1&empCode=2021048&status=waiting
+
+### 결재 기본정보 조회
+GET http://localhost:8080/approval/viewInfo?adCode=AD1
+
+### 결재 상세보기 : 결재라인
+GET http://localhost:8080/approval/viewLine?adCode=AD1
+
+### 결재 상세보기 : 상세내용
+GET http://localhost:8080/approval/viewDetail?adDetail=AATT1
+
+### 결재 상세보기 : 첨부파일
+GET http://localhost:8080/approval/viewAttach?adCode=AD17
+
+### 결재 상세보기 : 첨부파일 다운로드
+GET http://localhost:8080/approval/downloadAttach?attachOriginal=결재 더미_V1.sql&attachSave=a73274a4-4c56-46b8-8082-f6db0c281f0a.sql
+
+### 대한님 출력내용 확인필요 (발령내역)
+GET http://localhost:8080/approval/viewDetail?adDetail=AAPP1
+
+### 결재 상세보기 : 삭제
+DELETE http://localhost:8080/approval/document/delete?adCode=AD1
+
+### 결재 상세보기 : 수정
+PATCH http://localhost:8080/approval/modifyStatus?adCode=AD19
+
+### 받은결재함[대기] 조회
+GET http://localhost:8080/approval/receive/document?empCode=2024051&status=waiting
+
+### 결재양식 등록
+POST http://localhost:8080/approval/registForm
+Content-Type: application/json
+
+{
+  "afName": "테스트",
+  "afCon": "테스트",
+  "afExplain": "테스트",
+  "lineSort": {
+    "lsCode": 1
+  }
+}
+
+### 결재양식 삭제
+DELETE http://localhost:8080/approval/deleteForm?afCode=14
+
+### 결재양식 수정
+POST http://localhost:8080/approval/modifyForm?afCode=14
+Content-Type: application/json
+
+{
+  "afName": "테스트1",
+  "afCon": "테스트1",
+  "afExplain": "테스트1",
+  "lineSort": {
+    "lsCode": 2
+  }
+}
+
+### 결재양식 사용여부 조회
+GET http://localhost:8080/approval/checkIsForm?afCode=14
+
+### 보관함 등록
+POST http://localhost:8080/approval/registBox
+Content-Type: application/json
+
+{
+  "abName": "테스트",
+  "empCode": 2021048
+}
+
+### 보관함 조회
+GET http://localhost:8080/approval/boxList?empCode=2021048
+
+### 보관함 수정
+PATCH http://localhost:8080/approval/modifybox?abCode=3
+Content-Type: application/json
+
+{
+  "abName": "테스트2"
+}
+
+### 보관함 삭제
+DELETE http://localhost:8080/approval/deleteBox?abCode=3
+
+### 개인보관함에 결재문서 등록
+POST http://localhost:8080/approval/registDocInStorage?adCode=AD1&abCode=6
+
+### 개인보관함 조회
+GET http://localhost:8080/approval/docListInStorage?abCode=6
+
+### 개인보관함에서 결재문서 삭제
+DELETE http://localhost:8080/approval/deleteDocInStorage?adCode=AD1&abCode=2
+

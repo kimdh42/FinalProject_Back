@@ -1,0 +1,151 @@
+### 전체 근태 기록 조회(개인)
+GET http://localhost:8080/api/attendance/my-all
+Authorization: Bearer eyJkYXRlIjoxNzE5ODExODE4ODM0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA0MTY2MTh9.fFhehGUNEywEVolCLotGmcm26dU-I6EYr3vC2KNqE0UbFWd8E8_hTs1s6rJCD_hHiNSurKbSgTaPfPsJyE-6Bg
+
+### 전체 근태 기록 조회(전체)
+GET http://localhost:8080/api/attendance/all
+
+### 오늘의 근태 기록 조회
+GET http://localhost:8080/api/attendance/today
+Authorization: Bearer eyJkYXRlIjoxNzIwMDcyNDk5MTE5LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA2NzcyOTl9.jsFu1nABIOneLQKlIfhW-7aJ-8UdZrSKgg6B9bs8qOp4MUJRFs_WtthKNFKiyM_ok_YJ0A7k1dFnS_rfF7dHyQ
+
+### 금주의 근태 기록 조회
+GET http://localhost:8080/api/attendance/my-current-week
+Authorization: Bearer eyJkYXRlIjoxNzIwMDU3NTk0NTI2LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA2NjIzOTR9.dCQxz-DLBdVQ9IvqM3x4bBrNZHRSFdiEZDZhqGCwa6X7hgiKrV7muaGbiEhOwGmrE7VwLD79jfaJzomlG6FFXw
+
+### 금주의 근태 기록 조회
+GET http://localhost:8080/api/attendance/current-week
+
+### 출근시간 등록
+POST http://localhost:8080/api/attendance/registStartTime
+Authorization: Bearer eyJkYXRlIjoxNzIwMTU3NTU2MTI0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIyMTIxLCJleHAiOjE3MjA3NjIzNTZ9.ErLBRX5W4n4NpL0TIhzSEKcttzEWtKIbeFUC_aUnlpdr6XG2jOj4SJfBau3zEqloOIuK0scQ4OrSQoKr5Gdy-g
+
+### 퇴근시간 등록
+POST http://localhost:8080/api/attendance/registEndTime
+Authorization: Bearer eyJkYXRlIjoxNzIwMTU3NTU2MTI0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIyMTIxLCJleHAiOjE3MjA3NjIzNTZ9.ErLBRX5W4n4NpL0TIhzSEKcttzEWtKIbeFUC_aUnlpdr6XG2jOj4SJfBau3zEqloOIuK0scQ4OrSQoKr5Gdy-g
+
+### 지정 출/퇴근시간 조회 테스트
+GET http://localhost:8080/api/attendance/test
+Content-Type: application/json
+
+{
+  "employee" : 2021011
+}
+
+### 지정 출/퇴근시간 모두 조회
+GET http://localhost:8080/api/attendance/allSchedules
+Content-Type: application/json
+
+### 지정 출/퇴근시간 등록
+POST http://localhost:8080/api/attendance/registSchedule
+Content-Type: application/json
+
+{
+  "dsStartDate": "2024-07-03",
+  "dsEndDate": "2024-07-03",
+  "atdStartTime": "09:00:00",
+  "atdEndTime": "18:00:00",
+  "parTitle": "경영지원부",
+  "subTitle": "인사부",
+  "deptTitle": "채용팀",
+  "employee":
+    { "emp_code": 2021011 }
+}
+
+### 지정 출/퇴근시간 수정
+PUT http://localhost:8080/api/attendance/updateSchedule
+Content-Type: application/json
+
+{
+  "deptTitle": "D1",
+  "atdStartTime": "10:00:00",
+  "atdEndTime": "18:00:00",
+  "employee":
+    { "emp_code": 2021011 }
+}
+
+### 지정 출/퇴근시간 삭제
+DELETE http://localhost:8080/api/attendance/DeleteSchedule/3
+
+### 초과근무 모두 조회
+GET http://localhost:8080/api/attendance/overwork
+
+### 휴가기록 모두 조회
+GET http://localhost:8080/api/attendance/dayOff
+
+### 휴가기록 개인별 조회
+GET http://localhost:8080/api/attendance/my-dayOff
+Authorization: Bearer eyJkYXRlIjoxNzE5ODk5MTU4Mzc2LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA1MDM5NTh9.SHw7V6sGPiRCyOxzVpWcJAKO919TzFIOX49UqyRoaNOrBbpgS00j05eCiRovuMCrwfHH4fz3nZN3Dh4vVlW0dQ
+
+### 개인 휴가보유 내역 조회
+GET http://localhost:8080/api/attendance/my-dayOffBalance
+Authorization: Bearer eyJkYXRlIjoxNzIwNTk2MTkyMzYzLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEyMDA5OTJ9.pxL04BxX566hWWP4s4cFrXcVgB-wGT4Q0HIQ7V-CDZRch3xLbXFXRFhM2WbgWdzpu2yUjxoqCbpvzSsh5SSZng
+
+### 휴가 등록
+POST http://localhost:8080/api/attendance/registDayOff
+Content-Type: application/json
+
+{
+  "doReportDate": "2024-07-03",
+  "doName": "연차",
+  "doUsed": 1.0,
+  "doStartDate": "2024-07-04",
+  "doEndDate": "2024-07-05",
+  "doStartTime": "09:00:00",
+  "doEndTime": "18:00:00",
+  "employee":
+  { "emp_code": 2024062 }
+}
+
+### 초과근무 등록
+POST http://localhost:8080/api/attendance/registOverWork
+Content-Type: application/json
+
+{
+  "owDate": "2024-07-04",
+  "owStartTime": "19:00:00",
+  "owEndTime": "21:00:00",
+  "employee":
+  { "emp_code": 2024062 }
+}
+
+### 오늘의 전체 근태 내역 조회
+GET http://localhost:8080/api/attendance/today-all
+Authorization: Bearer eyJkYXRlIjoxNzIwMDcyNDk5MTE5LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA2NzcyOTl9.jsFu1nABIOneLQKlIfhW-7aJ-8UdZrSKgg6B9bs8qOp4MUJRFs_WtthKNFKiyM_ok_YJ0A7k1dFnS_rfF7dHyQ
+
+### 연차 촉진 이메일 발송 기능
+POST http://localhost:8080/api/attendance/sendEmail?empCodes=2020021
+
+### 예외근무 신청 현황
+GET http://localhost:8080/api/attendance/currentBT
+Authorization: Bearer eyJkYXRlIjoxNzIwNDM4MTgzOTc0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEwNDI5ODN9.jDTS5aRx7ApJ06oqaKFUmnIgEFjyxVCoVbEKk5HkkPFU9AH6sZYqJN2h1GoC4d7IH-dtUo-sl3hE80ID3xzRBQ
+
+### 초과근무 신청 현황
+GET http://localhost:8080/api/attendance/currentOW
+Authorization: Bearer eyJkYXRlIjoxNzIwNDM4MTgzOTc0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEwNDI5ODN9.jDTS5aRx7ApJ06oqaKFUmnIgEFjyxVCoVbEKk5HkkPFU9AH6sZYqJN2h1GoC4d7IH-dtUo-sl3hE80ID3xzRBQ
+
+### 휴가 신청 현황
+GET http://localhost:8080/api/attendance/currentDO
+Authorization: Bearer eyJkYXRlIjoxNzIwNDM4MTgzOTc0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEwNDI5ODN9.jDTS5aRx7ApJ06oqaKFUmnIgEFjyxVCoVbEKk5HkkPFU9AH6sZYqJN2h1GoC4d7IH-dtUo-sl3hE80ID3xzRBQ
+
+### 월간 휴가승인 현황
+GET http://localhost:8080/api/attendance/monthDO
+Authorization: Bearer eyJkYXRlIjoxNzIwNDM4MTgzOTc0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEwNDI5ODN9.jDTS5aRx7ApJ06oqaKFUmnIgEFjyxVCoVbEKk5HkkPFU9AH6sZYqJN2h1GoC4d7IH-dtUo-sl3hE80ID3xzRBQ
+
+### 메인페이지 / 공지사항
+GET http://localhost:8080/api/attendance/notice
+
+### 메인페이지 / 부재자
+GET http://localhost:8080/api/attendance/absentee
+
+### 메인페이지 / 생일자
+GET http://localhost:8080/api/attendance/birth
+
+### 메인페이지 / 업무 수
+GET http://localhost:8080/api/attendance/tasks-b
+Authorization: Bearer eyJkYXRlIjoxNzIwNjE0MzcwODIxLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEyMTkxNzB9.adKKdy9PIO7FVCBTZbvyU_VnSMq16IP1AVyw0XfvYe34QBKOEJeCdTOhxAFpEehRx7OmU2kKjT72gXW0PaefKg
+
+### 메인페이지 / 쪽지 수
+GET http://localhost:8080/api/attendance/message-n
+Authorization: Bearer eyJkYXRlIjoxNzIwNjE0MzcwODIxLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEyMTkxNzB9.adKKdy9PIO7FVCBTZbvyU_VnSMq16IP1AVyw0XfvYe34QBKOEJeCdTOhxAFpEehRx7OmU2kKjT72gXW0PaefKg
+

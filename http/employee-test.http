@@ -1,0 +1,240 @@
+### 사원등록
+POST http://localhost:8080/employee/empsRegist
+Content-Type:application/json
+
+[
+  {
+    "emp_code": "",
+    "emp_name": "테스터1",
+    "emp_pass": "",
+    "social_security_no": "111111-2222222",
+    "dept_code": "D5",
+    "position_code": "P5",
+    "title_code": "T6",
+    "hire_date": "2024-06-27",
+    "emp_status": "Y",
+    "detailErdCode": "",
+    "detailErdNum": "",
+    "detailErdTitle": "테스트 인사등록1",
+    "detailEmpCode": ""
+  },
+  {
+    "emp_code": "",
+    "emp_name": "테스터12",
+    "emp_pass": "",
+    "social_security_no": "333333-4444444",
+    "dept_code": "D7",
+    "position_code": "P8",
+    "title_code": "T9",
+    "hire_date": "2024-06-27",
+    "emp_status": "Y",
+    "detailErdCode": "",
+    "detailErdNum": "",
+    "detailErdTitle": "테스트 인사등록1",
+    "detailEmpCode": ""
+  },
+  {
+    "emp_code": "",
+    "emp_name": "테스터13",
+    "emp_pass": "",
+    "social_security_no": "555555-6666666",
+    "dept_code": "D7",
+    "position_code": "P8",
+    "title_code": "T9",
+    "hire_date": "2024-06-27",
+    "emp_status": "Y",
+    "detailErdCode": "",
+    "detailErdNum": "",
+    "detailErdTitle": "테스트 인사등록1",
+    "detailEmpCode": ""
+  }
+]
+
+### 인사내역 조회
+GET http://localhost:8080/employee/empsResgistList
+
+### 인사내역 상세 조회
+GET http://localhost:8080/employee/empsRegistListDetail/PER-2024-06-001
+
+### 로그인 테스트
+POST http://localhost:8080/emp/auth/login
+Content-Type: application/json
+
+{
+  "emp_code" : "2024062",
+  "emp_pass" : "2024062"
+}
+
+//@emp_code = 2024062
+### 내정보 조회
+GET http://localhost:8080/employee/myInfo
+Authorization: Bearer eyJkYXRlIjoxNzIwMDg3MDk3MDczLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIwMDExLCJleHAiOjE3MjA2OTE4OTd9.dvNIb30qAqMtUpTi3BuntTwp5329GfaLvqN5pwSQQVi-AAX8NF3bgvpV9sN-wi1x2G19uNKcDdFJfmEdUeTyqg
+
+### 내 정보 수정
+PATCH http://localhost:8080/employee/updateMyInfo
+Authorization: Bearer eyJkYXRlIjoxNzIwNDU3OTI5NjQ1LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjEwNjI3Mjl9.pnrmQZRUfIZY7_TmOXu1LOxV5OUh5KJaYbkzh1b2FYFdwP2_jqUmBvab5ExdYBvWdExpupGk6YJ6Ezf68AiqWA
+Content-Type: application/json
+
+{
+  "emp_pass": "2024062",
+  "new_emp_pass": "2024062"
+}
+
+### 사원 전체 조회
+GET http://localhost:8080/employee/employeeAll
+Content-Type:application/json
+
+### 인사기록카드 조회
+GET http://localhost:8080/employee/recordCard
+Authorization: Bearer eyJkYXRlIjoxNzIwMDg3MDk3MDczLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIwMDExLCJleHAiOjE3MjA2OTE4OTd9.dvNIb30qAqMtUpTi3BuntTwp5329GfaLvqN5pwSQQVi-AAX8NF3bgvpV9sN-wi1x2G19uNKcDdFJfmEdUeTyqg
+
+### 인사기록카드 등록
+POST http://localhost:8080/employee/registRecordCard
+Authorization: Bearer eyJkYXRlIjoxNzIwNTg4Mjg5NzQwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjExOTMwODl9.XSlRTYr9wm37p7kV8rWtZrrQ5Ntz0pKvyBRA0DC8IisOHVN9yjxTr8-QiQua0x6CzzWOxMUczbXPA04vjxvTkg
+Content-Type:application/json
+
+{
+  "emp_code": 2024062,
+  "schoolInfos": [
+    {
+      "sch_name": "테스트",
+      "enrole_date": "2024-07-10"
+    }
+  ]
+}
+
+### 인사기록카드 수정
+PATCH http://localhost:8080/employee/updateRecordCard
+Authorization: Bearer eyJkYXRlIjoxNzIwNTczODA3MTQ5LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjExNzg2MDd9.xAwSoHCNOs9Aq064QQdMiOSf7WijAaegDObcrPH_gvTe7hcGA4hwTQXHGHBVF9PKYstlND_ardfF9URmLBp4uw
+Content-Type:application/json
+
+{
+  "emp_code": 2024062,
+  "certificates": [
+    {
+      "cer_code": 29,
+      "cer_score": 10
+    }
+  ]
+}
+
+
+### 팀원 인사기록카드 조회
+GET http://localhost:8080/employee/teamRecordCard/2021011
+Authorization: Bearer eyJkYXRlIjoxNzIwMDg3MDk3MDczLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIwMDExLCJleHAiOjE3MjA2OTE4OTd9.dvNIb30qAqMtUpTi3BuntTwp5329GfaLvqN5pwSQQVi-AAX8NF3bgvpV9sN-wi1x2G19uNKcDdFJfmEdUeTyqg
+
+### 팀원 정보 조회
+GET http://localhost:8080/employee/employeeList
+Authorization: Bearer eyJkYXRlIjoxNzIwMDg3MDk3MDczLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIwMDExLCJleHAiOjE3MjA2OTE4OTd9.dvNIb30qAqMtUpTi3BuntTwp5329GfaLvqN5pwSQQVi-AAX8NF3bgvpV9sN-wi1x2G19uNKcDdFJfmEdUeTyqg
+
+### 부서 등록
+POST http://localhost:8080/employee/registDept
+Content-Type:application/json
+
+{
+  "dept_title": "부서생성테스트"
+}
+
+### 부서 상위 하위관계 등록
+POST http://localhost:8080/employee/registDeptRelations
+Content-Type:application/json
+
+{
+  "parentDepartment": {
+    "dept_code": "D22"
+  },
+  "subDepartment": {
+    "dept_code": "D23"
+  }
+}
+
+### 부서 상위 하위관계 수정
+PUT http://localhost:8080/employee/modifyDeptRelations/33
+Content-Type:application/json
+
+{
+  "dept_relations_code": 33,
+  "parentDepartment": {
+    "dept_code": "D22"
+  },
+  "subDepartment": {
+    "dept_code": "D24"
+  }
+}
+
+### 부서 상위 하위관계 삭제
+DELETE http://localhost:8080/employee/deleteDeptRelations
+Content-Type:application/json
+
+{
+  "parentDepartment": {
+    "dept_code": "D22"
+  },
+  "subDepartment": {
+    "dept_code": "D23"
+  }
+}
+
+### 부서 전체 조회
+GET http://localhost:8080/employee/departments
+
+### 부서 상세 조회
+GET http://localhost:8080/employee/deptDetailList/D2
+
+
+### 직급 전체 조회
+GET http://localhost:8080/employee/empPositions
+
+
+### 조직도 전체 조회
+GET http://localhost:8080/employee/org
+
+### 조직도 상세 조회
+GET http://localhost:8080/employee/orgDetail/2020011
+
+### 비밀번호 사원코드로 초기화
+PUT http://localhost:8080/employee/resetEmpPass/2024035
+Authorization: Bearer eyJkYXRlIjoxNzE5Mjk0NTAzODcwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MTkyOTgxMDN9.qX90Vu9uJJJ41hLDOGDlKbdcpHpAmWy2xmrRwR5xjycfZLdXFf7fdbHevf9YNXTlEjLH9ALt9xxy4Ix3TBeHiw
+
+### 발령 등록
+POST http://localhost:8080/employee/appRegist
+Content-Type:application/json
+
+{
+  "aappCode": "APP789",
+  "aappNo": "APP789",
+  "aappDate": "2024-07-05",
+  "aappTitle": "부서 이동",
+  "appRegistDetails": [
+    {
+      "adetBefore": "영업부",
+      "adetAfter": "마케팅부",
+      "adetType": "이동",
+      "empCode": 2024062
+    }
+  ]
+}
+
+### 발령등록 리스트 조회
+GET http://localhost:8080/employee/appRegistList
+Content-Type:application/json
+
+
+### 발령등록 리스트 상세조회
+GET http://localhost:8080/employee/appRegistListDetail/APP789
+Content-Type:application/json
+
+### 내 팀 사원 조회
+GET http://localhost:8080/employee/findMyTeamMate
+Authorization: Bearer eyJkYXRlIjoxNzIwMDkyNDA1ODQwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA2OTcyMDV9.zsewjEugU9QzBX2gQg_iFIhB6Jev7D09I6fgBCKv_1SHEg_ycujmSRoplmMCD15C34-w36vidIVZljJN7ZzbeA
+
+### 모든 사원 조회
+GET http://localhost:8080/employee/all
+
+### 프로필 사진 업로드
+POST http://localhost:8080/employee/uploadProfileImg
+
+### 프로필 이미지 조회
+GET http://localhost:8080/employee/profileImg?empCode=2024062
+
+

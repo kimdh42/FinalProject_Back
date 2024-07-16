@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="synergyhubback.approval.dao.LineEmpMapper">
+    <resultMap id="lineEmpResultMap" type="synergyhubback.approval.dto.response.LineEmpDTO">
+        <id property="empCode" column="EMP_CODE"/>
+        <result property="empName" column="EMP_NAME"/>
+        <result property="titleCode" column="TITLE_CODE"/>
+        <result property="titleName" column="TITLE_NAME"/>
+        <result property="deptCode" column="DEPT_CODE"/>
+        <result property="deptTitle" column="DEPT_TITLE"/>
+    </resultMap>
+    <select id="findLineEmpList" resultType="synergyhubback.approval.dto.response.LineEmpDTO">
+        WITH RECURSIVE DeptHierarchy AS (
+        SELECT PAR_DEPT_CODE, SUB_DEPT_CODE
+        FROM DEPT_RELATIONS
+        WHERE
+        <choose>
+            <when test="lsCode == 4">
+                SUB_DEPT_CODE = 'D4'
+            </when>
+            <when test="lsCode == 5">
+                SUB_DEPT_CODE = 'D3'
+            </when>
+            <when test="lsCode == 6">
+                SUB_DEPT_CODE = 'D5'
+            </when>
+            <otherwise>
+                SUB_DEPT_CODE = #{deptCode}
+            </otherwise>
+        </choose>
+
+        UNION ALL
+
+        SELECT dr.PAR_DEPT_CODE, dr.SUB_DEPT_CODE
+        FROM DEPT_RELATIONS dr
+        JOIN DeptHierarchy dh ON dr.SUB_DEPT_CODE = dh.PAR_DEPT_CODE
+        ),
+        FilteredEmployeeInfo AS (
+        SELECT ei.EMP_CODE, ei.EMP_NAME, ei.TITLE_CODE, et.TITLE_NAME, ei.DEPT_CODE, dp.DEPT_TITLE,
+        CAST(SUBSTRING_INDEX(ei.TITLE_CODE, 'T', -1) AS UNSIGNED) AS TITLE_NUMBER,
+        ROW_NUMBER() OVER (PARTITION BY ei.TITLE_CODE ORDER BY CAST(SUBSTRING_INDEX(ei.DEPT_CODE, 'D', -1) AS UNSIGNED) DESC) AS rn
+        FROM EMPLOYEE_INFO ei
+        JOIN (
+        SELECT DISTINCT PAR_DEPT_CODE AS DEPT_CODE
+        FROM DeptHierarchy
+        UNION
+        SELECT DISTINCT SUB_DEPT_CODE AS DEPT_CODE
+        FROM DeptHierarchy
+        ) AS dept_codes ON ei.DEPT_CODE = dept_codes.DEPT_CODE
+        JOIN EMP_TITLE et ON ei.TITLE_CODE = et.TITLE_CODE
+        JOIN DEPARTMENT dp ON ei.DEPT_CODE = dp.DEPT_CODE
+
+        WHERE
+        <choose>
+            <when test="lsCode == 4 or lsCode == 5 or lsCode == 6">
+                'T5' >= ei.TITLE_CODE
+            </when>
+            <otherwise>
+                #{titleCode} > ei.TITLE_CODE
+            </otherwise>
+        </choose>
+
+        AND ei.EMP_STATUS = 'Y'
+        ),
+        QueryD15 AS (
+        SELECT ei.EMP_CODE, ei.EMP_NAME, ei.TITLE_CODE, et.TITLE_NAME, ei.DEPT_CODE, dp.DEPT_TITLE
+        FROM EMPLOYEE_INFO ei
+        JOIN DEPARTMENT dp ON ei.DEPT_CODE = dp.DEPT_CODE
+        JOIN EMP_TITLE et ON ei.TITLE_CODE = et.TITLE_CODE
+        WHERE ei.DEPT_CODE = #{deptCode} AND #{titleCode} > ei.TITLE_CODE AND ei.EMP_STATUS = 'Y'
+        ORDER BY ei.TITLE_CODE DESC
+        LIMIT 1
+        )
+        SELECT EMP_CODE, EMP_NAME, TITLE_CODE, TITLE_NAME, DEPT_CODE, DEPT_TITLE
+        FROM (
+        <choose>
+            <when test="lsCode != 1 and lsCode != 2 and lsCode != 3">
+                SELECT * FROM QueryD15
+                UNION ALL
+            </when>
+        </choose>
+        SELECT EMP_CODE, EMP_NAME, TITLE_CODE, TITLE_NAME, DEPT_CODE, DEPT_TITLE
+        FROM FilteredEmployeeInfo
+        WHERE rn = 1
+        ) AS combined_results
+        ORDER BY CAST(SUBSTRING_INDEX(TITLE_CODE, 'T', -1) AS UNSIGNED) DESC, TITLE_CODE DESC;
+    </select>
+</mapper>

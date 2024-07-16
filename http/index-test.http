@@ -1,0 +1,176 @@
+### 로그인 테스트
+POST http://localhost:8080/emp/auth/login
+Content-Type: application/json
+
+{
+  "emp_code" : "2021067",
+  "emp_pass" : "2021067"
+
+}
+
+### 회원 주소록 전체 조회
+GET http://localhost:8080/address/select
+
+### 받은 쪽지 전체 조회
+GET http://localhost:8080/emp/message/receive
+Authorization: Bearer eyJkYXRlIjoxNzIwNTA5NjIwNDE2LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDExLCJleHAiOjE3MjExMTQ0MjB9.MOa-jnSR-M7HZ02FIPblWNFrnqfg82jvvYFBTaA35hxvjkM9-EjD8o-PkyvnRuxEMsdw-PSo0P1COguAaDbVzg
+### 보낸 쪽지 전체 조회
+GET http://localhost:8080/emp/message/send
+Authorization: Bearer eyJkYXRlIjoxNzE5ODE1OTQ3ODExLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDY3LCJleHAiOjE3MjA0MjA3NDd9.6eSyhtYMcGhRZvHa36DNCtDV8mQpRrmZ4yG-73FTnliLB0za-W7Hhe5NbaZuIngEX-5N4sQc8bJkmynKyLeOGw
+
+### 받은 쪽지 휴지통 PUT
+PUT http://localhost:8080/emp/message/receive/MS38/bin
+Content-Type: application/json
+
+{
+  "storCode": 2
+}
+
+### 보낸 쪽지 휴지통 PUT
+PUT http://localhost:8080/emp/message/send/MS6/bin
+Content-Type: application/json
+
+{
+  "storCode": 2
+}
+
+### 휴지통 전체 조회
+GET http://localhost:8080/emp/message/bin
+Authorization: Bearer eyJkYXRlIjoxNzE5ODE1OTQ3ODExLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDY3LCJleHAiOjE3MjA0MjA3NDd9.6eSyhtYMcGhRZvHa36DNCtDV8mQpRrmZ4yG-73FTnliLB0za-W7Hhe5NbaZuIngEX-5N4sQc8bJkmynKyLeOGw
+
+### 중요 보관함 전체 조회
+GET http://localhost:8080/emp/message/important
+Authorization: Bearer eyJkYXRlIjoxNzE5ODE1OTQ3ODExLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDY3LCJleHAiOjE3MjA0MjA3NDd9.6eSyhtYMcGhRZvHa36DNCtDV8mQpRrmZ4yG-73FTnliLB0za-W7Hhe5NbaZuIngEX-5N4sQc8bJkmynKyLeOGw
+
+### 업무 보관함 전체 조회
+GET http://localhost:8080/emp/message/work
+Authorization: Bearer eyJkYXRlIjoxNzE5ODE1OTQ3ODExLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDY3LCJleHAiOjE3MjA0MjA3NDd9.6eSyhtYMcGhRZvHa36DNCtDV8mQpRrmZ4yG-73FTnliLB0za-W7Hhe5NbaZuIngEX-5N4sQc8bJkmynKyLeOGw
+
+### Rev Msg Detail Get
+GET http://localhost:8080/emp/message/receive/MS72
+
+### Send Msg Detail Get
+GET http://localhost:8080/emp/message/send/MS6
+
+### Send Msg
+POST http://localhost:8080/emp/message/send
+Content-Type: application/json
+
+{
+  "msgTitle": "확인용?",
+  "msgCon": "이번에는?",
+  "msgStatus": "N",
+  "emerStatus": "N",
+  "empRev": {"emp_code": "2022089"},
+  "empSend": {"emp_code": "2021067"},
+  "revStor": {
+    "storCode": 1
+  },
+  "sendStor": {
+    "storCode": 1
+  }
+}
+
+### Temp Msg
+GET http://localhost:8080/emp/message/temp
+Authorization: Bearer eyJkYXRlIjoxNzIwNDE4NTMxOTkzLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDY3LCJleHAiOjE3MjEwMjMzMzF9.CoeADJ_dYaP5yQu-b1kw0hWEuI9nbxmpH4tDKhS6QWRITy_Xd1hURxFTL6yqV6H3VuMmUjAS8Koc-fhm3IPQPA
+
+### Create Temp Msg
+POST http://localhost:8080/emp/message/create/temp
+Content-Type: application/json
+
+{
+  "msgTitle": "임시저장 테스트99",
+  "msgCon": "임시저장이 잘 되었을까?",
+  "msgStatus": "N",
+  "emerStatus": "N",
+  "empRev": {
+    "emp_code": "2022089"
+  },
+  "empSend": {
+    "emp_code": "2021067"
+  },
+  "revStor": {
+    "storCode": 4
+  },
+  "sendStor": {
+    "storCode": 4
+  }
+}
+
+### Delete Msg
+DELETE http://localhost:8080/emp/message/bin/MS84
+
+### Update MsgStatus
+PATCH http://localhost:8080/emp/message/MS74/read
+
+### File Regist
+POST http://localhost:8080/emp/message/attach
+Content-Type: application/json
+
+{
+  "originalFileName" : "hello",
+  "saveFileName" : "안녕?",
+  "messageDir" : "어쩌구",
+  "message" : "ms91"
+}
+
+### Find File By msgCode
+GET http://localhost:8080/emp/message/findAttach/MS71
+
+### Download File
+GET http://localhost:8080/emp/message/download/attach
+
+### Stor Move Msg
+PUT http://localhost:8080/emp/message/toImp/MS74
+Content-Type: application/json
+
+{
+  "storCode": 2
+}
+
+### Rev Msg Status Update
+PUT http://localhost:8080/emp/message/receive/updateStatus
+Content-Type: application/json
+
+["MS11", "MS2"]
+
+### msgStatus Unread Update
+PATCH http://localhost:8080/emp/message/MS48/unread
+
+### revStor Update
+PUT http://localhost:8080/emp/message/receive/updateRevStor
+Content-Type: application/json
+
+["MS74", "MS75"]
+
+### sendStor Update
+PUT http://localhost:8080/emp/message/send/updateSendStor
+Content-Type: application/json
+
+["MS74", "MS75"]
+
+
+### Block Emp
+POST http://localhost:8080/emp/message/block
+Content-Type: application/json
+
+{
+  "blkDate": "2024-07-05",
+  "blkId": {
+    "emp_code": 2021011
+  },
+  "blkName": {
+    "emp_code": 2021011
+  }
+}
+
+### Block Emp Get
+GET http://localhost:8080/emp/message/2021011/2021068
+
+### Block Emp Address
+GET http://localhost:8080/emp/message/block/address?emp_code=2021011
+Authorization: Bearer eyJkYXRlIjoxNzIwNTA5NjIwNDE2LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDIxMDExLCJleHAiOjE3MjExMTQ0MjB9.MOa-jnSR-M7HZ02FIPblWNFrnqfg82jvvYFBTaA35hxvjkM9-EjD8o-PkyvnRuxEMsdw-PSo0P1COguAaDbVzg
+
+### Block Emp Delete
+DELETE http://localhost:8080/emp/message/delete/2

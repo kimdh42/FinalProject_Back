@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/groupware?allowPublicKeyRetrieval=true&useSSL=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+        format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rlaeogks004@gmail.com
+    password: nscdznlymjeidess
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  servlet:
+    multipart:
+      location: C:/SynergyHub
+      max-file-size: 50MB
+      max-request-size: 50MB
+mybatis:
+  mapper-locations: mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# image upload dir
+image:
+  profile-image-dir: C:/SynergyHub/profile
+  post-image-dir: C:/SynergyHub/post
+  message-image-dir: C:/SynergyHub/message
+
+file:
+  approval-dir: C:/SynergyHub/approval
+  message-dir: C:/SynergyHub/message
+
+
+server:
+  port: 8080
+
+jwt:
+  secret: asdfjk12938fu08bh3rhq2387qfe8hjvweh2w93ur9djvhw983o3uew23rfgeiv8hewsor2hjdhxmzqw83o832 #??? ???
+  access:
+    expiration: 604800000
+  refresh:
+    expiration: 604800000

@@ -1,0 +1,32 @@
+### 로그인 테스트
+POST http://localhost:8080/emp/auth/login
+Content-Type: application/json
+
+{
+  "emp_code" : "2024062",
+  "emp_pass" : "2024062"
+}
+
+### 피드 테스트
+POST http://localhost:8080/api/pheed/create
+Content-Type: application/json; charset=utf-8
+Authorization: Bearer eyJkYXRlIjoxNzIwMzM4Mzc2OTIxLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA5NDMxNzZ9.YnzdKmJUh7istJkQHoO6-H2Xt_g4hwfalr_auxeYgeVmRtDvzQQIbJg4bBXTJbCpO10ulslYIMpipZOv8XTDvQ
+
+{
+  "pheedCon": "왜 안나왕?",
+  "pheedSort": "일반",
+  "employee":
+  { "emp_code": 2024062 },
+  "url" : "http://localhost:3000/attendance"
+}
+
+### 피드 조회
+GET http://localhost:8080/api/pheed/list
+Content-Type: application/json
+Authorization: Bearer eyJkYXRlIjoxNzIwMzM2MzA5MDE4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcF9jb2RlIjoyMDI0MDYyLCJleHAiOjE3MjA5NDExMDl9.nlhM23GeIBhmt3HhbVDnPkGrA4emiYw7PkRFUOwDgmYl8TTxtiHYXzdbeeBHUbjJLHZqLdoUfTXDcl0mcsHe9Q
+
+### 피드 읽음
+PUT http://localhost:8080/api/pheed/update-readStatus/1
+
+### 피드 삭제
+PUT http://localhost:8080/api/pheed/update-deStatus/2
